@@ -44,16 +44,18 @@ public class PlayerControl : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.Space))
         {
-            Vector2 curPos = gameObject.transform.position;
-
-
-            Vector2 newPos = new Vector2(curPos.x, curPos.y + jumpHeight);
-
-
-            gameObject.transform.position = newPos;
+         Vector2 curPos = gameObject.transform.position;
+        Vector2 newPos = new Vector2(curPos.x, curPos.y + jumpHeight);
+        gameObject.transform.position = newPos;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("teacup"))
+        {
+            collision.gameObject.SetActive(false);
 
-
+        }
     }
 
     }
