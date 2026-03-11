@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     {
         introText.text = "What a beautiful teaset!";
         Invoke("SpawnThief", 3f);
+        
     }
 
     void SpawnThief()
