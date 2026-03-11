@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int coins = 0;
-    public TextMeshProUGUI coinText;
+    public TMP_Text coinText;
 
     void Awake()
     {
