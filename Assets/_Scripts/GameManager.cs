@@ -1,17 +1,18 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public int coins = 0;
+    public int coinCount = 0;
+
     public TMP_Text coinText;
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -22,40 +23,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        UpdateCoinUI();
-    }
-
     public void AddCoin()
     {
-        coins += 1;
+        coinCount++;
         UpdateCoinUI();
         CheckLevelProgress();
     }
 
     void UpdateCoinUI()
     {
-        coinText.text = "Coins: " + coins;
+        if (coinText != null)
+        {
+            coinText.text = "Coins: " + coinCount;
+        }
     }
 
     void CheckLevelProgress()
     {
         string scene = SceneManager.GetActiveScene().name;
 
-        if(scene == "Level1" && coins >= 10)
+        if(scene == "Level1" && coinCount >= 5)
         {
             SceneManager.LoadScene("Level2");
         }
 
-        if(scene == "Level2" && coins >= 15)
+        if(scene == "Level2" && coinCount >= 15)
         {
             SceneManager.LoadScene("Level3");
         }
 
-        if(scene == "Level3" && coins >= 20)
+        if(scene == "Level3" && coinCount >= 30)
         {
-            SceneManager.LoadScene("Shop");
+            SceneManager.LoadScene("EndTrade");
         }
     }
 }

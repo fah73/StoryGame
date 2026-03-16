@@ -24,20 +24,20 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
-    void SpawnObject()
+void SpawnObject()
+{
+    float randomX = Random.Range(-spawnWidth, spawnWidth);
+    Vector2 spawnPosition = new Vector2(randomX, spawnHeight);
+
+    int randomChoice = Random.Range(0, 3);
+
+    if(randomChoice == 0 && coinPrefab != null)
     {
-        float randomX = Random.Range(-spawnWidth, spawnWidth);
-        Vector2 spawnPosition = new Vector2(randomX, spawnHeight);
-
-        int randomChoice = Random.Range(0, 3);
-
-        if(randomChoice == 0)
-        {
-            Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(stickPrefab, spawnPosition, Quaternion.identity);
-        }
+        Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
     }
+    else if(stickPrefab != null)
+    {
+        Instantiate(stickPrefab, spawnPosition, Quaternion.identity);
+    }
+}
 }
