@@ -7,14 +7,14 @@ public class Talking : MonoBehaviour
 
     string[] dialogueLines =
     {
-        "Player: Hey! You stole my teaset!",
+        "Player: Hey! I wanted that teacup.",
         "Deer: Oh this? I found it.",
         "Player: You ran off with it!",
         "Deer: If you want it back, it'll cost you.",
         "Player: Fine... how much?",
         "Deer: 30 coins.",
         "Player: Deal. I'll take it back.",
-        "You bought back the teaset!"
+        "You bought back the teacup!"
     };
 
     int currentLine = 0;
