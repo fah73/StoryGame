@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int coinCount = 0;
-
     public TMP_Text coinText;
 
     void Awake()
@@ -16,6 +15,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -23,38 +23,51 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        coinText = GameObject.FindWithTag("CoinText")?.GetComponent<TMP_Text>();
+
+        if (coinText != null)
+        {
+            coinText.text = coinCount.ToString();
+        }
+    }
+
     public void AddCoin()
     {
         coinCount++;
-        UpdateCoinUI();
-        CheckLevelProgress();
-    }
-
-    void UpdateCoinUI()
-    {
         if (coinText != null)
         {
-            coinText.text = "Coins: " + coinCount;
+            coinText.text = coinCount.ToString();
         }
+        CheckLevelProgress();
     }
 
     void CheckLevelProgress()
     {
-        string scene = SceneManager.GetActiveScene().name;
+        string sceneName = SceneManager.GetActiveScene().name;
 
-        if(scene == "Level1" && coinCount >= 5)
-        {
+        if (sceneName == "Level1" && coinCount >= 5)
             SceneManager.LoadScene("Level2");
-        }
 
-        if(scene == "Level2" && coinCount >= 15)
-        {
+        if (sceneName == "Level2" && coinCount >= 15)
             SceneManager.LoadScene("Level3");
-        }
 
-        if(scene == "Level3" && coinCount >= 30)
-        {
+        if (sceneName == "Level3" && coinCount >= 30)
             SceneManager.LoadScene("EndTrade");
-        }
+    }
+    public void ResetCoins()
+{
+    coinCount = 0;
+
+    if (coinText != null)
+    {
+        coinText.text = coinCount.ToString();
+    }
+}
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

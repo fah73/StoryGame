@@ -1,18 +1,25 @@
 using UnityEngine;
+using TMPro;
 
 public class CoinScript : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collision)
+    private TextMeshProUGUI coinText;
+
+    private void Start()
     {
-        Debug.Log("Something touched the coin");
-
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log("Player collected coin");
-
-            GameManager.instance.AddCoin();
-
-            Destroy(gameObject);
-        }
+        coinText = GameObject.FindWithTag("CoinText")
+                    .GetComponent<TextMeshProUGUI>();
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+{
+    Debug.Log("Something touched coin");
+
+    if (collision.CompareTag("Player"))
+    {
+        Debug.Log("Player detected");
+        GameManager.instance.AddCoin();
+        Destroy(gameObject);
+    }
+}
 }

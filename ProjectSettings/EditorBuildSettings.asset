@@ -17,12 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 40531284610be40a9b3830467e9619a9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EndScene.unity
     guid: 24b6d3d4fc44b482f8bb3a5450b1c19c
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: ba228f689f20b41a4afaaf288cc57a3f
+  - enabled: 1
+    path: Assets/EndTrade.unity
+    guid: 373c21724095f4cf3aa0a8836c37ed7a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

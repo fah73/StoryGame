@@ -1,27 +1,22 @@
 using UnityEngine;
 using TMPro;
 
-public class Talking : MonoBehaviour
+public class EndDialogue : MonoBehaviour
 {
-    public TMP_Text dialogueText;
+    public TextMeshProUGUI dialogueText;
 
-    string[] dialogueLines =
+    private string[] lines = new string[]
     {
-        "Player: Hey! I wanted that teacup.",
-        "Deer: Oh this? I found it.",
-        "Player: You ran off with it!",
-        "Deer: If you want it back, it'll cost you.",
-        "Player: Fine... how much?",
-        "Deer: 30 coins.",
-        "Player: Deal. I'll take it back.",
-        "You bought back the teacup!"
+        "You made it to the end!", 
+        "Click the Deer to pay her your coins and get your teacup back!",
+        "The End!"
     };
 
-    int currentLine = 0;
+    private int index = 0;
 
     void Start()
     {
-        dialogueText.text = dialogueLines[currentLine];
+        dialogueText.text = lines[index];
     }
 
     void Update()
@@ -34,15 +29,15 @@ public class Talking : MonoBehaviour
 
     void NextLine()
     {
-        currentLine++;
+        index++;
 
-        if(currentLine < dialogueLines.Length)
+        if (index < lines.Length)
         {
-            dialogueText.text = dialogueLines[currentLine];
+            dialogueText.text = lines[index];
         }
         else
         {
-            dialogueText.text = "THE END";
+            Debug.Log("THE END");
         }
     }
 }
